@@ -16,7 +16,7 @@ namespace XmlUsage
         }
         public void addRow(ZhengCunZu addzu)
         {
-            Zheng = "abcgit test2";
+            Zheng = "abcgit test3";
             zu.Add(addzu);
         }
     }

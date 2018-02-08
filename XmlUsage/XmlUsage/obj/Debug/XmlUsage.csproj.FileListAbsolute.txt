@@ -1,0 +1,6 @@
+D:\code\XmlUsage\XmlUsage\obj\Debug\XmlUsage.csproj.CoreCompileInputs.cache
+D:\code\XmlUsage\XmlUsage\bin\Debug\XmlUsage.exe
+D:\code\XmlUsage\XmlUsage\bin\Debug\XmlUsage.pdb
+D:\code\XmlUsage\XmlUsage\obj\Debug\XmlUsage.exe
+D:\code\XmlUsage\XmlUsage\obj\Debug\XmlUsage.pdb
+D:\code\XmlUsage\XmlUsage\obj\Debug\XmlUsage.csprojResolveAssemblyReference.cache

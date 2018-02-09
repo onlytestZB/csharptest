@@ -11,35 +11,33 @@ namespace XmlUsage
         static void Main(string[] args)
         {
             XDocument doc = XDocument.Load(".\\test.xml");
-            
-
-            foreach(XElement item in doc.Root.Descendants("DATA"))
+            ZDCUNZU zdcunzu = new ZDCUNZU();
+            foreach (XElement item in doc.Root.Descendants("DATA"))
             {
                             
                 if(item.Attribute("DATANAME").Value== "TDFLMJ_Transition")
                 {
                     foreach(XElement row in item.Descendants("ROW"))
                     {
-                        foreach(XAttribute att in row.Attributes())
-                        {
-                            Console.Write("{0}:{1}",att.Name,att.Value);
-                        }                      
-                        Console.WriteLine();
+                        ZhengCunZu add_zu = new ZhengCunZu();
+                      
+                       
+                        add_zu.Zheng = row.Attribute("XIANG").Value;
+                        add_zu.Cun = row.Attribute("CUN").Value;
+                        add_zu.Zu = row.Attribute("ZU").Value;
+                        
                         foreach(XElement dl in row.Descendants("TDFLMJ"))
                         {
-                            foreach (XAttribute dl_att in dl.Attributes())
-                            {
-                                Console.WriteLine("{0}:{1}",dl_att.Name,dl_att.Value);
-                            }
-                            Console.WriteLine();
+                            add_zu.dlinfo[dl.Attribute("DLDM").Value] += Convert.ToInt32(dl.Attribute("DLMJ").Value);
                         }
+                        zdcunzu.addRow(add_zu);
                        
                     }
                 }
             }
-            
+            zdcunzu.display();
             Console.ReadKey();
         }
     }
-    
+
 }

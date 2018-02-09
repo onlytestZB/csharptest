@@ -7,27 +7,61 @@ namespace XmlUsage
 {
     public class ZDCUNZU
     {
-        public String Zheng;
-        public String Cun;
-        public List<ZhengCunZu> zu;
+       
+        public List<ZhengCunZu> AllZu;
         public ZDCUNZU()
         {
-            zu = new List<ZhengCunZu>();
+            AllZu = new List<ZhengCunZu>();
         }
         public void addRow(ZhengCunZu addzu)
         {
-            Zheng = "abcgit test456";
-            zu.Add(addzu);
+            bool flag = true;
+            foreach(ZhengCunZu zu in AllZu )
+            {
+                if(zu.Zheng==addzu.Zheng&&zu.Cun==addzu.Cun&&zu.Zu==addzu.Zu)
+                {
+                    flag = false;
+                    foreach(KeyValuePair<string,int> p in addzu.dlinfo)
+                    {
+                        zu.dlinfo[p.Key] += p.Value;
+                    }
+
+                }
+            }
+            if(flag)
+            {
+                AllZu.Add(addzu);
+            }            
+        }
+        public void display()
+        {
+            foreach(ZhengCunZu zu in AllZu)
+            {
+                Console.WriteLine("{0}{1}{2}:", zu.Zheng, zu.Cun, zu.Zu);
+                foreach (KeyValuePair<string, int> p in zu.dlinfo)
+                {
+                    
+                    if (p.Value != 0)
+                    {
+                        Console.WriteLine("{0}:{1}", p.Key, p.Value);
+                     }
+                }
+            }
+            
         }
     }
     public class ZhengCunZu
     {
-       
+        public String Zheng;
+        public String Cun;
         public String Zu;
         public Dictionary<string, int> dlinfo;
         public ZhengCunZu()
         {
+            Zheng = "";
+            Cun = "";
             Zu = "";
+            dlinfo = new Dictionary<string, int>();
             for(int i=1;i<4;i++)
             {
                 dlinfo.Add("01" + i,0);

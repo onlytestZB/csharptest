@@ -6,7 +6,14 @@ D:\code\XmlUsage\XmlUsage\obj\Debug\XmlUsage.pdb
 D:\code\XmlUsage\XmlUsage\obj\Debug\XmlUsage.csprojResolveAssemblyReference.cache
 D:\code\csharptest\XmlUsage\XmlUsage\bin\Debug\XmlUsage.exe
 D:\code\csharptest\XmlUsage\XmlUsage\bin\Debug\XmlUsage.pdb
-D:\code\csharptest\XmlUsage\XmlUsage\obj\Debug\XmlUsage.csprojResolveAssemblyReference.cache
 D:\code\csharptest\XmlUsage\XmlUsage\obj\Debug\XmlUsage.csproj.CoreCompileInputs.cache
 D:\code\csharptest\XmlUsage\XmlUsage\obj\Debug\XmlUsage.exe
 D:\code\csharptest\XmlUsage\XmlUsage\obj\Debug\XmlUsage.pdb
+D:\code\csharptest\XmlUsage\XmlUsage\bin\Debug\Interop.Excel.dll
+D:\code\csharptest\XmlUsage\XmlUsage\bin\Debug\Interop.Office.dll
+D:\code\csharptest\XmlUsage\XmlUsage\bin\Debug\Interop.VBIDE.dll
+D:\code\csharptest\XmlUsage\XmlUsage\obj\Debug\Interop.Excel.dll
+D:\code\csharptest\XmlUsage\XmlUsage\obj\Debug\Interop.Office.dll
+D:\code\csharptest\XmlUsage\XmlUsage\obj\Debug\Interop.VBIDE.dll
+D:\code\csharptest\XmlUsage\XmlUsage\obj\Debug\XmlUsage.csproj.ResolveComReference.cache
+D:\code\csharptest\XmlUsage\XmlUsage\obj\Debug\XmlUsage.csprojResolveAssemblyReference.cache

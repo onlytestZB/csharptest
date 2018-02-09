@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Excel;
 
 namespace XmlUsage
 {
@@ -36,6 +37,16 @@ namespace XmlUsage
                 }
             }
             zdcunzu.display();
+            Excel.Application excel = new Excel.Application();
+            excel.Visible = true;
+            if(excel==null)
+            {
+                Console.WriteLine("初始化失败");
+            }
+            else
+            {
+                Console.WriteLine("没毛病");
+            }
             Console.ReadKey();
         }
     }

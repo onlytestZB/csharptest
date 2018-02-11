@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpsusage"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="1024" Width="768">
     <Grid>
-        <Button x:Name="button" Content="按下" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="58,182,0,0" Click="button_Click"/>
+        <Button x:Name="button" Content="按下" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="616,49,0,0" Click="button_Click" FontSize="16" RenderTransformOrigin="-0.203,-0.047"/>
+        <Label Content="请选择文件:" HorizontalAlignment="Left" Margin="19,51,0,0" VerticalAlignment="Top" Height="34" Width="92" FontSize="16"/>
+        <TextBox x:Name="srcfile" HorizontalAlignment="Left" Height="25" Margin="116,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="471" FontSize="16"/>
 
     </Grid>
 </Window>

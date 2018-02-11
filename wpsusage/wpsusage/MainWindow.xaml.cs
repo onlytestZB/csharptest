@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace wpsusage
 {
@@ -27,13 +29,18 @@ namespace wpsusage
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            srcfile.Text = ofd.FileName;
+            /*
             Excel.Application application = new Excel.Application();
                 if(application!=null)
             {
                 application.Visible = true;
 
                 MessageBox.Show("成功");
-            }
+            }*/
+           
         }
     }
 }

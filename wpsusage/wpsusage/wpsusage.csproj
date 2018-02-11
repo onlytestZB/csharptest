@@ -53,7 +53,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataPerView.xaml.cs">
+      <DependentUpon>DataPerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZDCUNZU.cs" />
+    <Page Include="DataPerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

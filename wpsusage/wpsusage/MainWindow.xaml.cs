@@ -30,6 +30,7 @@ namespace wpsusage
         private void button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter= "xml文件(*.xml)|*.xml|所有文件|*.*";
             ofd.ShowDialog();
             srcfile.Text = ofd.FileName;
             /*
@@ -40,7 +41,28 @@ namespace wpsusage
 
                 MessageBox.Show("成功");
             }*/
-           
+            
+            
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (srcfile.Text == "")
+            {
+                MessageBox.Show("请选择文件");
+            }
+            else
+            {
+                ZDCUNZU zdcz = new ZDCUNZU(srcfile.Text);
+                if(zdcz.AllZu.Count==0)
+                {
+                    MessageBox.Show("请选择正确文件");
+                    return;
+                }
+                zdcz.display();
+                DataPerView dataPerView = new DataPerView(ref zdcz);
+                dataPerView.Show();
+            }
         }
     }
 }

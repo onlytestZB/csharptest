@@ -52,10 +52,15 @@ namespace XmlUsage
     }
     public class ZhengCunZu
     {
-        public String Zheng;
-        public String Cun;
-        public String Zu;
+        private String zheng;
+        private String cun;
+        private String zu;
         public Dictionary<string, int> dlinfo;
+
+        public string Zheng { get => zheng; set => zheng = value; }
+        public string Cun { get => cun; set => cun = value; }
+        public string Zu { get => zu; set => zu = value; }
+
         public ZhengCunZu()
         {
             Zheng = "";

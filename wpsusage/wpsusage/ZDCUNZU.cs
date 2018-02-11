@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace wpsusage
 {
@@ -10,11 +11,39 @@ namespace wpsusage
     {
 
         public List<ZhengCunZu> AllZu;
+        protected XDocument doc;
         public ZDCUNZU()
         {
             AllZu = new List<ZhengCunZu>();
         }
-      
+        public ZDCUNZU(String srcfile)
+        {
+            AllZu = new List<ZhengCunZu>();
+            doc = XDocument.Load(srcfile);
+            
+            foreach (XElement item in doc.Root.Descendants("DATA"))
+            {
+
+                if (item.Attribute("DATANAME").Value == "TDFLMJ_Transition")
+                {
+                    foreach (XElement row in item.Descendants("ROW"))
+                    {
+                        ZhengCunZu add_zu = new ZhengCunZu();
+
+
+                        add_zu.Zheng = row.Attribute("XIANG").Value;
+                        add_zu.Cun = row.Attribute("CUN").Value;
+                        add_zu.Zu = row.Attribute("ZU").Value;
+
+                        foreach (XElement dl in row.Descendants("TDFLMJ"))
+                        {
+                            add_zu.dlinfo[dl.Attribute("DLDM").Value] += Convert.ToInt32(dl.Attribute("DLMJ").Value);
+                        }
+                        this.addRow(add_zu);
+                    }
+                }
+            }
+        }
         public void addRow(ZhengCunZu addzu)
         {
             bool flag = true;
@@ -27,7 +56,6 @@ namespace wpsusage
                     {
                         zu.dlinfo[p.Key] += p.Value;
                     }
-
                 }
             }
             if (flag)

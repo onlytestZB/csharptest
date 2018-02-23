@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace wpsusage
     {
 
         public List<ZhengCunZu> AllZu;
+        public DataSet dataSet;
         protected XDocument doc;
         public ZDCUNZU()
         {
@@ -78,6 +80,36 @@ namespace wpsusage
                 }
             }
 
+        }
+        public DataSet AllZutoDataSet()
+        {
+            dataSet = new DataSet();
+            DataTable dt = new DataTable();
+            if(AllZu.Count<=0)
+            {
+                return null;
+            }
+            dt.Columns.Add(new DataColumn("镇",typeof(string)));
+            dt.Columns.Add(new DataColumn("村", typeof(string)));
+            dt.Columns.Add(new DataColumn("组", typeof(string)));
+            foreach (KeyValuePair<string, int> p in AllZu[0].dlinfo)
+            {
+                dt.Columns.Add(new DataColumn(p.Key, typeof(Int32)));
+            }
+            foreach(ZhengCunZu zu in AllZu)
+            {
+                DataRow dr = dt.NewRow();
+                dr["镇"] = zu.Zheng;
+                dr["村"] = zu.Cun;
+                dr["组"] = zu.Zu;
+                foreach (KeyValuePair<string, int> p in zu.dlinfo)
+                {
+                    dr[p.Key] = p.Value;
+                }
+                dt.Rows.Add(dr);
+            }
+            dataSet.Tables.Add(dt);
+            return dataSet;
         }
     }
     public class ZhengCunZu

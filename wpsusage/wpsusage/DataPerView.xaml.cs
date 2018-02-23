@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,8 @@ namespace wpsusage
         {
             InitializeComponent();
             zdcz = old_zdcz;
+            DataSet ds = zdcz.AllZutoDataSet();
+            datasetbind.ItemsSource = ds.Tables[0].DefaultView;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,9 +38,6 @@ namespace wpsusage
             this.Close();
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+       
     }
 }

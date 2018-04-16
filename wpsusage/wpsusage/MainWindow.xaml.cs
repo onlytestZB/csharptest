@@ -40,8 +40,7 @@ namespace wpsusage
                 application.Visible = true;
 
                 MessageBox.Show("成功");
-            }*/
-            
+            }*/            
             
         }
 

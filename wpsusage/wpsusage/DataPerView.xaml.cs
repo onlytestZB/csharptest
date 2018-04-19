@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Collections.Generic;
+using System.Linq;
+
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+
 using ExportToExcel;
+using Microsoft.Win32;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace wpsusage
 {
@@ -32,14 +29,7 @@ namespace wpsusage
             zdcz = old_zdcz;
             DataSet ds = zdcz.AllZutoDataSet();
             datasetbind.ItemsSource = ds.Tables[0].DefaultView;
-            DataView dv = datasetbind.ItemsSource as DataView;
-            for(int i=0;i<dv.Table.Columns.Count;i++)
-            {
-                if(dv.Table.Columns[i].ColumnName=="011")
-                {
-                    dv.Table.Columns[i].ColumnName = "011水田";
-                }               
-            }
+            DataView dv = datasetbind.ItemsSource as DataView;           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -50,7 +40,10 @@ namespace wpsusage
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             DataSet dataset = zdcz.AllZutoDataSet();
-            string excelFilename = "Sample.xlsx";
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "excel文件(*.xlsx)|*.xlsx|所有文件|*.*";
+            sfd.ShowDialog();
+            string excelFilename = sfd.FileName;
             try
             {
                 
@@ -63,6 +56,51 @@ namespace wpsusage
             }
             MessageBox.Show(excelFilename + "生成成功");
             CreateExcelFile.CreateExcelDocument(dataset, "test.xlsx");
+        }
+
+        private void exportword_Click(object sender, RoutedEventArgs e)
+        {
+            string path = @"model.docx";
+            using (WordprocessingDocument doc = WordprocessingDocument.Open(path, true))
+            {
+                List<Text> textList = new List<Text>();
+                Body body = doc.MainDocumentPart.Document.Body;
+                foreach (Paragraph paragraph in body.Elements<Paragraph>())
+                {
+                    if (paragraph.InnerText.Contains("$zheng"))
+                    {
+                        foreach (Run run in paragraph.Elements<Run>())
+                        {
+                            textList.AddRange(run.Elements<Text>());
+                        }
+                        paragraph.Elements<Run>().FirstOrDefault().Append(new Text("城东街道"));
+                    }
+                }
+                foreach (Table table in body.Elements<Table>())
+                {
+                    foreach (TableRow tableRow in table.Elements<TableRow>())
+                    {
+                        foreach (TableCell tableCell in tableRow.Elements<TableCell>())
+                        {
+                            if (tableCell.InnerText.Contains(("$zheng")))
+                            {
+                                foreach (Paragraph paragraph in tableCell.Elements<Paragraph>())
+                                {
+                                    foreach (Run run in paragraph.Elements<Run>())
+                                    {
+                                        textList.AddRange(run.Elements<Text>());
+                                    }
+                                }
+                                tableCell.Elements<Paragraph>().FirstOrDefault().Elements<Run>().FirstOrDefault().Append(new Text("城东街道"));
+                            }
+                        }
+                    }
+                }
+                foreach (var removeText in textList)
+                {
+                    removeText.Remove();
+                }
+            }
         }
     }
 }
